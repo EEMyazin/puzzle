@@ -2,7 +2,7 @@ import java.lang.reflect.Array;
 
 public class Solution {
     public static void main(String[] args) {
-        ConundrumSolver sol = new RecursiveSolver();
+        ConundrumSolver sol = new Solver();
         int[] test1 = {1,2,3,4,0,5,6,7};
         for(int i : sol.resolve(test1){
             System.out.print(i + ' ');
