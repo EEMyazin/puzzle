@@ -1,8 +1,7 @@
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.nio.ByteBuffer;
+import java.util.*;
 
-public class SolverOnTasks implements ConundrumSolver {
+public class SolverOnQueue implements ConundrumSolver {
     private final boolean[][] connectivityMatrix = {{false,true,true,false,false,false,false,false},
             {true,false,true,true,false,false,false,false},
             {true,true,false,false,false,true,false,false},
@@ -53,10 +52,12 @@ public class SolverOnTasks implements ConundrumSolver {
      * Класс реализующий очередь(FIFO) обработки состояний графа.
      */
     class Queue {
-        LinkedList<State> queue;
+        private LinkedList<State> queue;
+        private HashSet<Long> stateHistory;
 
         public Queue(){
             queue = new LinkedList<State>();
+            stateHistory = new HashSet<Long>();
         }
 
         public State getState(){
@@ -68,15 +69,9 @@ public class SolverOnTasks implements ConundrumSolver {
         }
 
         public void putState(State newState){
-            boolean inQueue = false;
-            for (State stateInQueue : queue){
-                if (stateInQueue.equals(newState)) {
-                    inQueue = true;
-                    break;
-                }
-            }
-            if (!inQueue) {
+            if (!stateHistory.contains(newState.asLong())) {
                 queue.addLast(newState);
+                stateHistory.add(newState.asLong());
             }
         }
 
@@ -85,14 +80,6 @@ public class SolverOnTasks implements ConundrumSolver {
                 putState(newState);
             }
         }
-
-        /*public void putState(State newState){
-            queue.add(newState);
-        }
-
-        public void putStates(List<State> nextStates){
-            queue.addAll(nextStates);
-        }*/
 
         public boolean hasStates(){
             return (queue.size()>0);
@@ -161,6 +148,10 @@ public class SolverOnTasks implements ConundrumSolver {
             return Arrays.equals(state, other.getState());
         }
 
+        public long asLong() {
+            return ByteBuffer.wrap(state).getLong();
+        }
+
         /**
          * Класс для хранения порядка перемещения цифр в пустую ячейку.
          *
@@ -176,7 +167,7 @@ public class SolverOnTasks implements ConundrumSolver {
             private final int countStep;
 
             public Path(){
-                array = new byte[15];
+                array = new byte[10];
                 countStep = 0;
             }
 
