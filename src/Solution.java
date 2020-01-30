@@ -36,7 +36,7 @@ public class Solution {
         }
         int i = 0;
         for (Integer[] input : inputsArray){
-            System.out.println(Arrays.toString(input) + " -> " + Arrays.toString(sol.resolve(Arrays.stream(input).mapToInt(Integer::intValue).toArray())));
+            System.out.println(:Arrays.toString(input) + " -> " + Arrays.toString(sol.resolve(Arrays.stream(input).mapToInt(Integer::intValue).toArray())));
         }
     }
 }
