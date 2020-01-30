@@ -23,16 +23,6 @@ public class SolverOnTasks implements ConundrumSolver {
         return pathFinder.searchPathFrom(firstState);
     }
 
-
-    /*private State swapElement(byte[] array, byte firstElementIndex, byte secondElementIndex){
-        byte[] result = new byte[8];
-        System.arraycopy(array, 0, result,0, 8);
-        byte temp = result[firstElementIndex];
-        result[firstElementIndex] = result[secondElementIndex];
-        result[secondElementIndex] = temp;
-        return result;
-    }*/
-
     /**
      * Класс организующий поиск решения задачи
      */
@@ -77,13 +67,32 @@ public class SolverOnTasks implements ConundrumSolver {
             return result;
         }
 
-        public void putState(State element){
-            queue.addLast(element);
+        public void putState(State newState){
+            boolean inQueue = false;
+            for (State stateInQueue : queue){
+                if (stateInQueue.equals(newState)) {
+                    inQueue = true;
+                    break;
+                }
+            }
+            if (!inQueue) {
+                queue.addLast(newState);
+            }
+        }
+
+        public void putStates(List<State> nextStates){
+            for (State newState : nextStates){
+                putState(newState);
+            }
+        }
+
+        /*public void putState(State newState){
+            queue.add(newState);
         }
 
         public void putStates(List<State> nextStates){
             queue.addAll(nextStates);
-        }
+        }*/
 
         public boolean hasStates(){
             return (queue.size()>0);
@@ -148,6 +157,10 @@ public class SolverOnTasks implements ConundrumSolver {
             return Arrays.equals(state,correctSolution);
         }
 
+        public boolean equals(State other){
+            return Arrays.equals(state, other.getState());
+        }
+
         /**
          * Класс для хранения порядка перемещения цифр в пустую ячейку.
          *
@@ -163,7 +176,7 @@ public class SolverOnTasks implements ConundrumSolver {
             private final int countStep;
 
             public Path(){
-                array = new byte[30];
+                array = new byte[15];
                 countStep = 0;
             }
 
@@ -175,7 +188,7 @@ public class SolverOnTasks implements ConundrumSolver {
             public Path getPathWithNextStep(byte nextStep){
                 byte[] newArray;
                 if (array.length == countStep){
-                    newArray = new byte[array.length + 10];
+                    newArray = new byte[array.length + 5];
                 }
                 else {
                     newArray = new byte[array.length];
