@@ -1,16 +1,10 @@
-import org.junit.Assert;
-import org.junit.Test;
-import org.paukov.combinatorics3.Generator;
-import org.w3c.dom.ls.LSOutput;
-
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
-import static org.paukov.combinatorics3.Generator.*;
+import static org.paukov.combinatorics3.Generator.permutation;
 
 
 public class Solution {

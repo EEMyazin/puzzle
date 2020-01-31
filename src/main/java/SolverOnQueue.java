@@ -3,13 +3,13 @@ import java.util.*;
 
 public class SolverOnQueue implements ConundrumSolver {
     private final boolean[][] connectivityMatrix = {{false,true,true,false,false,false,false,false},
-            {true,false,true,true,false,false,false,false},
-            {true,true,false,false,false,true,false,false},
-            {false,true,false,false,true,false,true,false},
-            {false,false,false,true,false,true,false,false},
-            {false,false,true,false,true,false,false,true},
-            {false,false,false,true,false,false,false,true},
-            {false,false,false,false,false,true,true,false}};
+                                                    {true,false,true,true,false,false,false,false},
+                                                    {true,true,false,false,false,true,false,false},
+                                                    {false,true,false,false,true,false,true,false},
+                                                    {false,false,false,true,false,true,false,false},
+                                                    {false,false,true,false,true,false,false,true},
+                                                    {false,false,false,true,false,false,false,true},
+                                                    {false,false,false,false,false,true,true,false}};
     private final byte[] desiredState = {1,2,3,4,0,5,6,7};
 
     @Override
