@@ -3,6 +3,14 @@ import org.junit.Test;
 
 public class SolverOnQueueTest {
     @Test
+    public void resolve0() {
+        int[] input = {0, 7, 1, 2, 3, 4, 6, 5};
+        int[] actual = new SolverOnQueue().resolve(input);
+        int[] expected = {7, 2, 6, 5, 4, 1, 7, 2, 7, 1, 3, 6, 7, 2, 1, 3, 4, 5, 7, 6, 4, 5, 7, 6, 4};
+        Assert.assertArrayEquals(actual,expected);
+    }
+
+    @Test
     public void resolve1() {
         int[] input = {1, 2, 3, 4, 0, 5, 6, 7};
         int[] actual = new SolverOnQueue().resolve(input);
@@ -74,14 +82,6 @@ public class SolverOnQueueTest {
         int[] actual = new SolverOnQueue().resolve(input);
         int[] expected = {4, 2, 1, 3, 7, 4, 2, 1, 3, 7, 3, 1, 2, 4, 3, 7, 1, 2, 4, 3, 7, 2, 4, 5, 6, 7, 3, 5, 4, 2, 3, 5};
 
-        Assert.assertArrayEquals(actual,expected);
-    }
-
-    @Test
-    public void resolve10() {
-        int[] input = {0, 7, 1, 2, 3, 4, 6, 5};
-        int[] actual = new SolverOnQueue().resolve(input);
-        int[] expected = {7, 2, 6, 5, 4, 1, 7, 2, 7, 1, 3, 6, 7, 2, 1, 3, 4, 5, 7, 6, 4, 5, 7, 6, 4};
         Assert.assertArrayEquals(actual,expected);
     }
 
