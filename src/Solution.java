@@ -1,3 +1,5 @@
+import org.junit.Assert;
+import org.junit.Test;
 import org.paukov.combinatorics3.Generator;
 import org.w3c.dom.ls.LSOutput;
 
@@ -36,7 +38,15 @@ public class Solution {
         }
         int i = 0;
         for (Integer[] input : inputsArray){
-            System.out.println(Arrays.toString(input) + " -> " + Arrays.toString(sol.resolve(Arrays.stream(input).mapToInt(Integer::intValue).toArray())));
+            i++;
+            //System.out.println(Arrays.toString(input) + " -> " + Arrays.toString(sol.resolve(Arrays.stream(input).mapToInt(Integer::intValue).toArray())));
+            System.out.println("@Test\n" +
+                    "        public void resolve" + Integer.toString(i) + "() {\n" +
+                    "            int[] input = " + Arrays.toString(input).replace('[','{').replace(']','}') +";\n" +
+                    "            int[] actual = new SolverOnQueue().resolve(input);\n" +
+                    "            int[] expected = " + Arrays.toString(sol.resolve(Arrays.stream(input).mapToInt(Integer::intValue).toArray())).replace('[','{').replace(']','}') + ";\n" +
+                    "            Assert.assertArrayEquals(actual,expected);\n" +
+                    "        }\n");
         }
     }
 }
