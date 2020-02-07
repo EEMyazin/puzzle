@@ -139,6 +139,7 @@ public class SolverOnQueue implements ConundrumSolver {
             for (int i = 0; i < state.length; i++){
                 if (state[i] == 0) {
                      this.nullPosition = i;
+                     break;
                 }
             }
             this.path = new Path();
